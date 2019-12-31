@@ -1,0 +1,99 @@
+<!DOCTYPE html>
+<html>
+<meta charset="UTF-8">
+<style type="text/css">
+	div {
+		margin-left: auto;
+		margin-right: auto;
+		width: 300px;
+	}
+</style>
+<body>
+						
+	<h1 id = "header1" align="center">
+		椒盐卷饼式
+	</h1>			
+	<div>
+		<img id = "image1" src="/resources/1.jpg" width = "500" height = "500" "float:middle">
+	</div>
+	<div align = "center">
+		<button id = "button1" style = "height:50px;width:100px" onclick="stopDisplay()"> 今晚不虚！</button>	
+		<button id = "button2" style = "height:50px;width:100px" onclick="startDisplay()"> 再来一次！</button>	
+	</div>
+
+
+<script type = "text/javascript"> 
+	function getRandomNumber() {
+		var rand = Math.ceil(Math.random()*28);
+		console.log(rand);
+		return rand;
+	}
+	function stopDisplay() {
+		clearInterval(window.disp);
+	}
+	function startDisplay() {
+		window.disp = setInterval(dynamicDisplay, 50); 
+	}
+	function getImageFileName(flag, randomNumber) {
+		if(flag == true) {
+			var picFilename = "/resources/".concat(randomNumber).concat(".jpg");
+			console.log(picFilename);
+			return picFilename;
+		}
+		
+	}
+	function getHeaderText(flag, randomNumber, dataArray) {
+		if(flag == true) {
+			var headerText = dataArray[randomNumber - 1];
+			console.log(headerText);
+			return headerText;
+		}
+	}
+	function dynamicDisplay() {
+		var dataArray = new Array(
+		"椒盐卷饼式",
+		"泰山压顶",
+		"G点杀手",
+		"面对面女上",
+		"芭蕾舞姿",
+		"女牛仔",
+		"女牛仔变招",
+		"软木螺丝",
+		"老汉推车",
+		"传教士",
+		"后入式（小狗式)",
+		"青蛙跳",
+		"X体位",
+		"跃跃欲试",
+		"反向女牛仔",
+		"你站我弯",
+		"勺子运动",
+		"反向勺子式",
+		"神奇山峰",
+		"一起坐",
+		"牛仔式",
+		"金拱门",
+		"贝壳式",
+		"耕田式",
+		"桥梁式",
+		"香槟式",
+		"瑜伽式",
+		"V字形");
+		var flag = true;
+		var randomNumber = getRandomNumber();
+		var text = getHeaderText(flag, randomNumber, dataArray);
+		var picFilename = getImageFileName(flag, randomNumber);
+		document.getElementById("header1").innerHTML = text;
+		document.getElementById("image1").src = picFilename;
+	}	
+	
+	var flag = true
+	var disp;
+	if(window.flag = true) {
+		window.disp = setInterval(dynamicDisplay, 50);
+	}
+
+</script>
+		
+</body>
+</html>
