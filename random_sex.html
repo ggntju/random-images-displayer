@@ -20,11 +20,10 @@
 		<button id = "button1" style = "height:50px;width:100px" onclick="stopDisplay()"> 今晚不虚！</button>	
 		<button id = "button2" style = "height:50px;width:100px" onclick="startDisplay()"> 再来一次！</button>	
 	</div>
-
-
+</script>
 <script type = "text/javascript"> 
 	function getRandomNumber() {
-		var rand = Math.ceil(Math.random()*28);
+		var rand = Math.ceil(Math.random()*29);
 		console.log(rand);
 		return rand;
 	}
@@ -44,41 +43,21 @@
 	}
 	function getHeaderText(flag, randomNumber, dataArray) {
 		if(flag == true) {
-			var headerText = dataArray[randomNumber - 1];
+			var headerText = dataArray[randomNumber];
 			console.log(headerText);
 			return headerText;
 		}
 	}
+	function processJSONFile(event) {
+		var jsonData = this.responseText;
+		var result = JSON.parse(jsonData);
+		window.dataArray = result;
+	}
 	function dynamicDisplay() {
-		var dataArray = new Array(
-		"椒盐卷饼式",
-		"泰山压顶",
-		"G点杀手",
-		"面对面女上",
-		"芭蕾舞姿",
-		"女牛仔",
-		"女牛仔变招",
-		"软木螺丝",
-		"老汉推车",
-		"传教士",
-		"后入式（小狗式)",
-		"青蛙跳",
-		"X体位",
-		"跃跃欲试",
-		"反向女牛仔",
-		"你站我弯",
-		"勺子运动",
-		"反向勺子式",
-		"神奇山峰",
-		"一起坐",
-		"牛仔式",
-		"金拱门",
-		"贝壳式",
-		"耕田式",
-		"桥梁式",
-		"香槟式",
-		"瑜伽式",
-		"V字形");
+		var xhr = new XMLHttpRequest();
+		xhr.open("GET", "/resources/name_tips_pair.json");
+		xhr.addEventListener('load', processJSONFile);
+		xhr.send();
 		var flag = true;
 		var randomNumber = getRandomNumber();
 		var text = getHeaderText(flag, randomNumber, dataArray);
@@ -89,6 +68,7 @@
 	
 	var flag = true
 	var disp;
+	var dataArray;
 	if(window.flag = true) {
 		window.disp = setInterval(dynamicDisplay, 50);
 	}
